@@ -4,8 +4,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 
-import { DeviceGroup } from '@core/models';
-import { UserTabsService } from '@core/services/user-tabs.service';
+import { DeviceGroup } from '@shared/models';
+import { UserTabsService } from '@shared/services/user-tabs.service';
 import { TabCardComponent } from '../tab-card/tab-card.component';
 
 @Component({

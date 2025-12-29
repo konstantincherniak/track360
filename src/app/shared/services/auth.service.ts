@@ -5,7 +5,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { User, AuthResponse } from '@supabase/supabase-js';
 
 import { SupabaseService } from './supabase.service';
-import { AuthCredentials } from '@core/models';
+import { AuthCredentials } from '@shared/models';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

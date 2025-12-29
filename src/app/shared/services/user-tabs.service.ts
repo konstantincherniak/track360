@@ -5,7 +5,7 @@ import { Observable, from, of, interval, map, tap, switchMap, startWith, catchEr
 import { SupabaseService } from './supabase.service';
 import { AuthService } from './auth.service';
 import { PresenceIdService } from './presence-id.service';
-import { UserTab, UserTabWithState, TabState, DeviceGroup } from '@core/models';
+import { UserTab, UserTabWithState, TabState, DeviceGroup } from '@shared/models';
 
 @Injectable({ providedIn: 'root' })
 export class UserTabsService {

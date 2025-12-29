@@ -11,9 +11,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { AuthService } from '@core/services/auth.service';
-import { PresenceService } from '@core/services/presence.service';
-import { UserTabsService } from '@core/services/user-tabs.service';
+import { AuthService } from '@shared/services/auth.service';
+import { PresenceService } from '@shared/services/presence.service';
+import { UserTabsService } from '@shared/services/user-tabs.service';
 import { TabsSummaryComponent } from './components/tabs-summary/tabs-summary.component';
 import { DeviceGroupComponent } from './components/device-group/device-group.component';
 

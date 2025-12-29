@@ -7,8 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { AuthService } from '@core/services/auth.service';
-import { AuthForm } from '@core/models';
+import { AuthService } from '@shared/services/auth.service';
+import { AuthForm } from '@shared/models';
 
 @Component({
   selector: 'app-auth',

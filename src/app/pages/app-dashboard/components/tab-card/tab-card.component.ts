@@ -4,7 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 
-import { UserTabWithState } from '@core/models';
+import { UserTabWithState } from '@shared/models';
 import { RelativeTimePipe } from '@shared/pipes/relative-time.pipe';
 
 @Component({
