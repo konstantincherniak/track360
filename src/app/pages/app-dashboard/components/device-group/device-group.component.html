@@ -1,7 +1,9 @@
 <mat-expansion-panel [expanded]="group().isCurrentDevice">
   <mat-expansion-panel-header>
     <mat-panel-title>
-      <mat-icon>{{ group().isCurrentDevice ? 'computer' : 'devices_other' }}</mat-icon>
+      <mat-icon>{{
+        group().isCurrentDevice ? "computer" : "devices_other"
+      }}</mat-icon>
       <span class="device-label">
         @if (group().isCurrentDevice) {
           This Device
@@ -9,11 +11,15 @@
           Device
         }
       </span>
-      <span class="device-id">{{ group().deviceId | slice:0:8 }}...</span>
+      <span class="device-id">{{ group().deviceId | slice: 0 : 8 }}...</span>
     </mat-panel-title>
     <mat-panel-description>
-      <span [matBadge]="group().tabs.length" matBadgeOverlap="false" matBadgeSize="small">
-        {{ group().tabs.length }} tab{{ group().tabs.length !== 1 ? 's' : '' }}
+      <span
+        [matBadge]="group().tabs.length"
+        matBadgeOverlap="false"
+        matBadgeSize="small"
+      >
+        {{ group().tabs.length }} tab{{ group().tabs.length !== 1 ? "s" : "" }}
       </span>
     </mat-panel-description>
   </mat-expansion-panel-header>

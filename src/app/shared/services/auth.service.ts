@@ -1,13 +1,23 @@
-import { Injectable, inject, signal, computed } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable, from, tap, catchError, map, EMPTY, firstValueFrom, filter, take } from 'rxjs';
-import { toObservable } from '@angular/core/rxjs-interop';
-import { User, AuthResponse } from '@supabase/supabase-js';
+import { Injectable, inject, signal, computed } from "@angular/core";
+import { Router } from "@angular/router";
+import {
+  Observable,
+  from,
+  tap,
+  catchError,
+  map,
+  EMPTY,
+  firstValueFrom,
+  filter,
+  take,
+} from "rxjs";
+import { toObservable } from "@angular/core/rxjs-interop";
+import { User, AuthResponse } from "@supabase/supabase-js";
 
-import { SupabaseService } from './supabase.service';
-import { AuthCredentials } from '@shared/models';
+import { SupabaseService } from "./supabase.service";
+import { AuthCredentials } from "@shared/models";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class AuthService {
   private readonly _supabase = inject(SupabaseService);
   private readonly _router = inject(Router);
@@ -21,8 +31,8 @@ export class AuthService {
       toObservable(this.isLoading).pipe(
         filter((loading) => !loading),
         take(1),
-        map(() => this.isAuthenticated())
-      )
+        map(() => this.isAuthenticated()),
+      ),
     );
   }
 
@@ -34,9 +44,9 @@ export class AuthService {
         }
       }),
       catchError((error) => {
-        console.error('Sign up error:', error);
+        console.error("Sign up error:", error);
         throw error;
-      })
+      }),
     );
   }
 
@@ -48,9 +58,9 @@ export class AuthService {
         }
       }),
       catchError((error) => {
-        console.error('Sign in error:', error);
+        console.error("Sign in error:", error);
         throw error;
-      })
+      }),
     );
   }
 
@@ -58,13 +68,13 @@ export class AuthService {
     return from(this._supabase.auth.signOut()).pipe(
       tap(() => {
         this.currentUser.set(null);
-        this._router.navigate(['/auth']);
+        this._router.navigate(["/auth"]);
       }),
       map(() => undefined),
       catchError((error) => {
-        console.error('Sign out error:', error);
+        console.error("Sign out error:", error);
         return EMPTY;
-      })
+      }),
     );
   }
 

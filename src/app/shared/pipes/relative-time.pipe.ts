@@ -1,17 +1,17 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-  name: 'relativeTime',
+  name: "relativeTime",
   standalone: true,
   pure: true,
 })
 export class RelativeTimePipe implements PipeTransform {
   transform(value: string | Date): string {
     if (!value) {
-      return '';
+      return "";
     }
 
-    const date = typeof value === 'string' ? new Date(value) : value;
+    const date = typeof value === "string" ? new Date(value) : value;
     const diff = Date.now() - date.getTime();
 
     const seconds = Math.floor(diff / 1000);

@@ -1,9 +1,9 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal } from "@angular/core";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class PresenceIdService {
-  private readonly DEVICE_ID_KEY = 'device_id';
-  private readonly TAB_ID_KEY = 'tab_id';
+  private readonly DEVICE_ID_KEY = "device_id";
+  private readonly TAB_ID_KEY = "tab_id";
 
   public readonly deviceId = signal(this._getOrCreateDeviceId());
   public readonly tabId = signal(this._getOrCreateTabId());

@@ -1,26 +1,48 @@
 <div class="auth-container">
   <div class="auth-card">
-    <h1>{{ isSignUp() ? 'Sign Up' : 'Sign In' }}</h1>
+    <h1>{{ isSignUp() ? "Sign Up" : "Sign In" }}</h1>
 
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input matInput type="email" formControlName="email" autocomplete="email" />
-        @if (formGroup.controls.email.hasError('required') && formGroup.controls.email.touched) {
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          autocomplete="email"
+        />
+        @if (
+          formGroup.controls.email.hasError("required") &&
+          formGroup.controls.email.touched
+        ) {
           <mat-error>Email is required</mat-error>
         }
-        @if (formGroup.controls.email.hasError('email') && formGroup.controls.email.touched) {
+        @if (
+          formGroup.controls.email.hasError("email") &&
+          formGroup.controls.email.touched
+        ) {
           <mat-error>Please enter a valid email</mat-error>
         }
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
-        <input matInput type="password" formControlName="password" autocomplete="current-password" />
-        @if (formGroup.controls.password.hasError('required') && formGroup.controls.password.touched) {
+        <input
+          matInput
+          type="password"
+          formControlName="password"
+          autocomplete="current-password"
+        />
+        @if (
+          formGroup.controls.password.hasError("required") &&
+          formGroup.controls.password.touched
+        ) {
           <mat-error>Password is required</mat-error>
         }
-        @if (formGroup.controls.password.hasError('minlength') && formGroup.controls.password.touched) {
+        @if (
+          formGroup.controls.password.hasError("minlength") &&
+          formGroup.controls.password.touched
+        ) {
           <mat-error>Password must be at least 6 characters</mat-error>
         }
       </mat-form-field>
@@ -29,19 +51,26 @@
         <div class="error-message">{{ errorMessage() }}</div>
       }
 
-      <button mat-raised-button color="primary" type="submit" [disabled]="isLoading()">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="isLoading()"
+      >
         @if (isLoading()) {
           <mat-spinner diameter="20"></mat-spinner>
         } @else {
-          {{ isSignUp() ? 'Sign Up' : 'Sign In' }}
+          {{ isSignUp() ? "Sign Up" : "Sign In" }}
         }
       </button>
     </form>
 
     <div class="toggle-mode">
-      <span>{{ isSignUp() ? 'Already have an account?' : "Don't have an account?" }}</span>
+      <span>{{
+        isSignUp() ? "Already have an account?" : "Don't have an account?"
+      }}</span>
       <button mat-button color="accent" (click)="toggleMode()">
-        {{ isSignUp() ? 'Sign In' : 'Sign Up' }}
+        {{ isSignUp() ? "Sign In" : "Sign Up" }}
       </button>
     </div>
   </div>

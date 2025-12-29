@@ -1,2 +1,2 @@
-export * from './user-tab.model';
-export * from './auth.model';
+export * from "./user-tab.model";
+export * from "./auth.model";

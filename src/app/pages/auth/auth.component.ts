@@ -1,17 +1,28 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  signal,
+} from "@angular/core";
+import { Router } from "@angular/router";
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatButtonModule } from "@angular/material/button";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
-import { AuthService } from '@shared/services/auth.service';
-import { AuthForm } from '@shared/models';
+import { AuthService } from "@shared/services/auth.service";
+import { AuthForm } from "@shared/models";
 
 @Component({
-  selector: 'app-auth',
+  selector: "app-auth",
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
@@ -21,8 +32,8 @@ import { AuthForm } from '@shared/models';
     MatButtonModule,
     MatProgressSpinnerModule,
   ],
-  templateUrl: './auth.component.html',
-  styleUrl: './auth.component.scss',
+  templateUrl: "./auth.component.html",
+  styleUrl: "./auth.component.scss",
 })
 export class AuthComponent {
   private readonly _fb = inject(FormBuilder);
@@ -35,8 +46,14 @@ export class AuthComponent {
   protected readonly errorMessage = signal<string | null>(null);
 
   protected readonly formGroup: FormGroup<AuthForm> = this._fb.group({
-    email: this._fb.nonNullable.control('', [Validators.required, Validators.email]),
-    password: this._fb.nonNullable.control('', [Validators.required, Validators.minLength(6)]),
+    email: this._fb.nonNullable.control("", [
+      Validators.required,
+      Validators.email,
+    ]),
+    password: this._fb.nonNullable.control("", [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
   });
 
   protected toggleMode(): void {
@@ -66,12 +83,12 @@ export class AuthComponent {
           return;
         }
         if (data.user) {
-          this._router.navigate(['/app']);
+          this._router.navigate(["/app"]);
         }
       },
       error: (err) => {
         this.isLoading.set(false);
-        this.errorMessage.set(err.message || 'An error occurred');
+        this.errorMessage.set(err.message || "An error occurred");
       },
     });
   }

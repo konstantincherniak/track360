@@ -1,4 +1,4 @@
-export type TabState = 'active' | 'idle' | 'stale';
+export type TabState = "active" | "idle" | "stale";
 
 export interface UserTab {
   user_id: string;

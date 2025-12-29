@@ -1,13 +1,34 @@
-import { Injectable, inject, signal, computed, DestroyRef } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Observable, from, of, interval, map, tap, switchMap, startWith, catchError } from 'rxjs';
+import {
+  Injectable,
+  inject,
+  signal,
+  computed,
+  DestroyRef,
+} from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import {
+  Observable,
+  from,
+  of,
+  interval,
+  map,
+  tap,
+  switchMap,
+  startWith,
+  catchError,
+} from "rxjs";
 
-import { SupabaseService } from './supabase.service';
-import { AuthService } from './auth.service';
-import { PresenceIdService } from './presence-id.service';
-import { UserTab, UserTabWithState, TabState, DeviceGroup } from '@shared/models';
+import { SupabaseService } from "./supabase.service";
+import { AuthService } from "./auth.service";
+import { PresenceIdService } from "./presence-id.service";
+import {
+  UserTab,
+  UserTabWithState,
+  TabState,
+  DeviceGroup,
+} from "@shared/models";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class UserTabsService {
   private readonly _supabase = inject(SupabaseService);
   private readonly _authService = inject(AuthService);
@@ -21,8 +42,8 @@ export class UserTabsService {
   public readonly tabs = signal<UserTabWithState[]>([]);
   public readonly isLoading = signal(false);
 
-  public readonly onlineCount = computed(() =>
-    this.tabs().filter((t) => t.state !== 'stale').length
+  public readonly onlineCount = computed(
+    () => this.tabs().filter((t) => t.state !== "stale").length,
   );
 
   public readonly deviceCount = computed(() => {
@@ -42,7 +63,10 @@ export class UserTabsService {
     return Array.from(grouped.entries())
       .map(([deviceId, tabs]) => ({
         deviceId,
-        tabs: tabs.sort((a, b) => new Date(b.last_seen).getTime() - new Date(a.last_seen).getTime()),
+        tabs: tabs.sort(
+          (a, b) =>
+            new Date(b.last_seen).getTime() - new Date(a.last_seen).getTime(),
+        ),
         isCurrentDevice: deviceId === this._presenceId.deviceId(),
       }))
       .sort((a, b) => (a.isCurrentDevice ? -1 : b.isCurrentDevice ? 1 : 0));
@@ -57,11 +81,11 @@ export class UserTabsService {
     this.isLoading.set(true);
 
     return from(
-      this._supabase.from('user_tabs').select('*').eq('user_id', userId)
+      this._supabase.from("user_tabs").select("*").eq("user_id", userId),
     ).pipe(
       map(({ data, error }) => {
         if (error) {
-          console.error('Failed to load tabs:', error);
+          console.error("Failed to load tabs:", error);
           return [];
         }
         return (data || []).map((tab: UserTab) => this._computeState(tab));
@@ -71,10 +95,10 @@ export class UserTabsService {
         this.isLoading.set(false);
       }),
       catchError((error) => {
-        console.error('Failed to load tabs:', error);
+        console.error("Failed to load tabs:", error);
         this.isLoading.set(false);
         return of([]);
-      })
+      }),
     );
   }
 
@@ -83,7 +107,7 @@ export class UserTabsService {
       .pipe(
         startWith(0),
         switchMap(() => this.loadTabs()),
-        takeUntilDestroyed(this._destroyRef)
+        takeUntilDestroyed(this._destroyRef),
       )
       .subscribe();
   }
@@ -97,12 +121,12 @@ export class UserTabsService {
 
   private _computeState(tab: UserTab): UserTabWithState {
     const diff = Date.now() - new Date(tab.last_seen).getTime();
-    let state: TabState = 'stale';
+    let state: TabState = "stale";
 
     if (diff < this.TTL_ACTIVE) {
-      state = 'active';
+      state = "active";
     } else if (diff < this.TTL_IDLE) {
-      state = 'idle';
+      state = "idle";
     }
 
     return { ...tab, state };
