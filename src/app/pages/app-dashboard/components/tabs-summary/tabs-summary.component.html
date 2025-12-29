@@ -1,0 +1,27 @@
+<mat-card class="summary-card">
+  <mat-card-content>
+    <div class="summary-item">
+      <mat-icon class="online-icon">wifi</mat-icon>
+      <div class="summary-value">
+        <span class="count">{{ onlineCount() }}</span>
+        <span class="label">Online Tabs</span>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="summary-item">
+      <mat-icon>tab</mat-icon>
+      <div class="summary-value">
+        <span class="count">{{ totalCount() }}</span>
+        <span class="label">Total Tabs</span>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="summary-item">
+      <mat-icon>devices</mat-icon>
+      <div class="summary-value">
+        <span class="count">{{ deviceCount() }}</span>
+        <span class="label">Devices</span>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

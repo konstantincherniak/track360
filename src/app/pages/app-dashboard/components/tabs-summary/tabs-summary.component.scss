@@ -1,0 +1,36 @@
+.summary-card {
+  margin-bottom: 24px;
+}
+
+mat-card-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 16px;
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.summary-value {
+  display: flex;
+  flex-direction: column;
+
+  .count {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .label {
+    font-size: 12px;
+  }
+}
+
+.divider {
+  width: 1px;
+  height: 48px;
+  background: #ccc;
+}

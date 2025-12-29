@@ -1,0 +1,28 @@
+mat-toolbar {
+  .spacer {
+    flex: 1;
+  }
+
+  .user-email {
+    margin-right: 8px;
+  }
+}
+
+.dashboard-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+}
+
+.loading-container,
+.empty-state {
+  padding: 48px;
+  text-align: center;
+}

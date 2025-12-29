@@ -1,0 +1,18 @@
+mat-expansion-panel {
+  margin-bottom: 16px;
+}
+
+mat-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .device-id {
+    font-family: monospace;
+    font-size: 12px;
+  }
+}
+
+.tabs-list {
+  padding-top: 8px;
+}

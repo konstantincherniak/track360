@@ -1,0 +1,28 @@
+<mat-card [class.current-tab]="isCurrentTab()" [class]="stateClass()">
+  <mat-card-header>
+    <mat-card-title>
+      @if (isCurrentTab()) {
+        <mat-icon>tab</mat-icon>
+        Current Tab
+      } @else {
+        <mat-icon>tab_unselected</mat-icon>
+        Tab
+      }
+    </mat-card-title>
+    <mat-chip-set>
+      <mat-chip [class]="'state-chip ' + tab().state">
+        {{ tab().state | titlecase }}
+      </mat-chip>
+    </mat-chip-set>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="info-row">
+      <mat-icon>schedule</mat-icon>
+      <span>{{ tab().last_seen | relativeTime }}</span>
+    </div>
+    <div class="info-row user-agent">
+      <mat-icon>devices</mat-icon>
+      <span>{{ browserName() }}</span>
+    </div>
+  </mat-card-content>
+</mat-card>
