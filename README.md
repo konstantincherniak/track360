@@ -61,15 +61,6 @@ npm run build
 
 ```
 src/app/
-├── core/
-│   ├── guards/auth.guard.ts       # Route protection
-│   ├── models/                     # TypeScript interfaces
-│   └── services/
-│       ├── auth.service.ts         # Authentication
-│       ├── presence.service.ts     # Heartbeat & visibility tracking
-│       ├── presence-id.service.ts  # Device/Tab ID management
-│       ├── supabase.service.ts     # Supabase client
-│       └── user-tabs.service.ts    # Tab data fetching & state
 ├── pages/
 │   ├── auth/                       # Login/Signup page
 │   └── app-dashboard/              # Main dashboard
@@ -78,7 +69,15 @@ src/app/
 │           ├── tab-card/           # Individual tab display
 │           └── tabs-summary/       # Online count summary
 └── shared/
-    └── pipes/relative-time.pipe.ts
+    ├── guards/auth.guard.ts        # Route protection
+    ├── models/                     # TypeScript interfaces
+    ├── pipes/relative-time.pipe.ts # Relative time formatting
+    └── services/
+        ├── auth.service.ts         # Authentication
+        ├── presence.service.ts     # Heartbeat & visibility tracking
+        ├── presence-id.service.ts  # Device/Tab ID management
+        ├── supabase.service.ts     # Supabase client
+        └── user-tabs.service.ts    # Tab data fetching & state
 ```
 
 ## Presence Strategy
